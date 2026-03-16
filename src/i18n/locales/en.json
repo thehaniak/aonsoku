@@ -262,7 +262,6 @@
     },
     "header": {
       "episodeCount_one": "{{count}} episode",
-      "episodeCount_many": "{{count}} episodes",
       "episodeCount_other": "{{count}} episodes",
       "feed": "Feed",
       "website": "Official Website",
@@ -693,16 +692,16 @@
               "info": "Enable animated covers in album header view."
             },
             "fullscreen": {
-              "label": "Fullscreen Player",
-              "info": "Enable animated covers in fullscreen player cover."
+              "label": "Big Player",
+              "info": "Enable animated covers for the current song cover in the Big Player."
             },
             "playerBar": {
               "label": "Bottom Player Bar",
-              "info": "Enable animated covers for the current-song cover in the bottom player bar."
+              "info": "Enable animated covers for the current song cover in the player bar."
             },
             "drawer": {
-              "label": "Queue/Lyrics Drawer",
-              "info": "Enable animated covers for the current-song cover in the queue/lyrics drawer."
+              "label": "Queue and Lyrics",
+              "info": "Enable animated covers for the current song cover in the Queue and Lyrics drawer."
             }
           }
         }
