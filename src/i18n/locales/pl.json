@@ -735,7 +735,7 @@
             },
             "playerBar": {
               "label": "Dolny pasek odtwarzacza",
-              "info": "Włącz animowane okładki dla aktualnej piosenki w dolnym pasku odtwarzacza."
+              "info": "Włącz animowane okładki dla aktualnej piosenki w pasku odtwarzacza."
             },
             "drawer": {
               "label": "Kolejka I Tekst",
