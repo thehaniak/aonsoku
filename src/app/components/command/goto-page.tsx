@@ -12,6 +12,7 @@ export function CommandGotoPage({ runCommand }: CommandItemProps) {
   const hideArtistsSection = useAppStore().pages.hideArtistsSection
   const hideSongsSection = useAppStore().pages.hideSongsSection
   const hideAlbumsSection = useAppStore().pages.hideAlbumsSection
+  const hideGenresSection = useAppStore().pages.hideGenresSection
   const hideFavoritesSection = useAppStore().pages.hideFavoritesSection
   const hidePlaylistsSection = useAppStore().pages.hidePlaylistsSection
   const hideRadiosSection = useAppStore().pages.hideRadiosSection
@@ -25,6 +26,7 @@ export function CommandGotoPage({ runCommand }: CommandItemProps) {
         if (hideArtistsSection && id === SidebarItems.Artists) return null
         if (hideSongsSection && id === SidebarItems.Songs) return null
         if (hideAlbumsSection && id === SidebarItems.Albums) return null
+        if (hideGenresSection && id === SidebarItems.Genres) return null
         if (hideFavoritesSection && id === SidebarItems.Favorites) return null
         if (hidePlaylistsSection && id === SidebarItems.Playlists) return null
         if (hideRadiosSection && id === SidebarItems.Radios) return null
