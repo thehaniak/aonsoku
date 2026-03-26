@@ -89,6 +89,7 @@ export default function Playlist() {
           columnFilter={columnsToShow}
           noRowsMessage={t('playlist.noSongList')}
           variant="modern"
+          enableVirtualization={true}
         />
 
         <RemoveSongFromPlaylistDialog />
