@@ -16,18 +16,6 @@ import { ColumnFilter } from '@/types/columnFilter'
 import { PlaybackSource } from '@/types/playerContext'
 import { convertSecondsToHumanRead } from '@/utils/convertSecondsToTime'
 
-function getSourceLabel(source: PlaybackSource | null): string | null {
-  if (
-    source?.type === 'album' ||
-    source?.type === 'playlist' ||
-    source?.type === 'artist' ||
-    source?.type === 'favourite'
-  ) {
-    return `: ${source.name}`
-  }
-  return null
-}
-
 export function QueueSongList() {
   const { t } = useTranslation()
   const currentList = usePlayerCurrentList()
@@ -54,25 +42,34 @@ export function QueueSongList() {
     'remove',
   ]
 
+  function getSourceLabel(source: PlaybackSource | null) {
+    if (!source) return null
+
+    return source.name
+  }
+
   const sourceLabel = getSourceLabel(source)
 
   return (
     <div className="flex flex-1 flex-col h-full min-w-[300px]">
       <DialogTitle className="sr-only">{t('queue.title')}</DialogTitle>
       <div className="flex items-center justify-between h-8 mb-2">
-        <div className="flex gap-2 h-6 items-center text-foreground/70">
-          <p className="text-foreground">
-            {t('queue.title')}
-            {sourceLabel}
-          </p>
-          <p>{'•'}</p>
-          <p className="text-sm">
+        <div className="flex gap-2 items-center text-foreground/70 text-sm whitespace-nowrap shrink min-w-0">
+          <span className="text-foreground shrink-0">{t('queue.title')}</span>
+          {sourceLabel && (
+            <div className="hidden md:flex gap-2 items-center shrink min-w-0">
+              <span className="shrink-0">{'•'}</span>
+              <span className="truncate">{sourceLabel}</span>
+            </div>
+          )}
+          <span className="shrink-0">{'•'}</span>
+          <span className="shrink-0">
             {t('playlist.songCount', { count: trackListCount })}
-          </p>
-          <p>{'•'}</p>
-          <p className="text-sm">
+          </span>
+          <span className="shrink-0">{'•'}</span>
+          <span className="shrink-0">
             {t('playlist.duration', { duration: trackListDuration })}
-          </p>
+          </span>
         </div>
 
         <div>
