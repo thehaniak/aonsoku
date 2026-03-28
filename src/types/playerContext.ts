@@ -20,11 +20,13 @@ export interface ISongList {
   podcastListProgresses: number[]
 }
 
-export type PlaybackSource =
-  | { type: 'playlist'; id: string; name: string }
-  | { type: 'album'; id: string; name: string }
-  | { type: 'artist'; id: string; name: string }
-  | { type: 'favourite'; id: string; name: string }
+export type PlaybackSourceType = 'playlist' | 'album' | 'artist' | 'favourite'
+
+export type PlaybackSource = {
+  type: PlaybackSourceType
+  id: string
+  name: string
+}
 
 export interface IPlaybackContext {
   source: PlaybackSource | null

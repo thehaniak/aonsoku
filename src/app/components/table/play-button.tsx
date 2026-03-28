@@ -2,6 +2,8 @@ import { PauseIcon, PlayIcon } from 'lucide-react'
 import { EqualizerBars } from '@/app/components/icons/equalizer-bars'
 import { Button } from '@/app/components/ui/button'
 import {
+  useIsArtistPlaying,
+  useIsPlaylistPlaying,
   usePlayerActions,
   usePlayerIsPlaying,
   usePlayerMediaType,
@@ -19,16 +21,17 @@ export default function PlaySongButton({
   trackId,
   handlePlayButton,
 }: PlaySongButtonProps) {
-  const { checkActiveSong, togglePlayPause, isPlaylistActive, isArtistActive } =
-    usePlayerActions()
+  const { checkActiveSong, togglePlayPause } = usePlayerActions()
   const { isSong, isRadio } = usePlayerMediaType()
   const isPlaying = usePlayerIsPlaying()
   const { radioList, currentSongIndex } = usePlayerSonglist()
+  const { isPlaylistActive } = useIsPlaylistPlaying(trackId)
+  const { isArtistActive } = useIsArtistPlaying(trackId)
 
   const isCurrentSongPlaying = () => {
     if (isSong) {
-      if (isArtistActive(trackId)) return true
-      if (isPlaylistActive(trackId)) return true
+      if (isArtistActive) return true
+      if (isPlaylistActive) return true
 
       return checkActiveSong(trackId)
     }

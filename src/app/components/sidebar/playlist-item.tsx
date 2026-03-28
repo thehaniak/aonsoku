@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { ListMusic } from 'lucide-react'
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { EqualizerBars } from '@/app/components/icons/equalizer-bars'
 import { PlaylistOptions } from '@/app/components/playlist/options'
@@ -11,11 +11,7 @@ import {
 } from '@/app/components/ui/main-sidebar'
 import { useRouteIsActive } from '@/app/hooks/use-route-is-active'
 import { ROUTES } from '@/routes/routesList'
-import {
-  usePlayerActions,
-  usePlayerIsPlaying,
-  usePlayerSonglist,
-} from '@/store/player.store'
+import { useIsPlaylistPlaying, usePlayerIsPlaying } from '@/store/player.store'
 import { Playlist } from '@/types/responses/playlist'
 
 const MemoContextMenuProvider = memo(ContextMenuProvider)
@@ -27,15 +23,8 @@ interface SidebarPlaylistItemProps {
 
 export function SidebarPlaylistItem({ playlist }: SidebarPlaylistItemProps) {
   const { isOnPlaylist } = useRouteIsActive()
-  const { currentList } = usePlayerSonglist()
   const isPlaying = usePlayerIsPlaying()
-  const { isPlaylistActive } = usePlayerActions()
-
-  const isCurrentlyPlaying = useMemo(() => {
-    if (!currentList) return false
-
-    return isPlaylistActive(playlist.id) && isPlaying
-  }, [isPlaylistActive, isPlaying, playlist.id, currentList])
+  const { isPlaylistPlaying } = useIsPlaylistPlaying(playlist.id)
 
   return (
     <MainSidebarMenuItem>
@@ -53,7 +42,7 @@ export function SidebarPlaylistItem({ playlist }: SidebarPlaylistItemProps) {
           className={clsx(
             isOnPlaylist(playlist.id) && 'cursor-default',
             isOnPlaylist(playlist.id) && !isPlaying && 'bg-accent',
-            isCurrentlyPlaying && 'text-primary',
+            isPlaylistPlaying && 'text-primary',
           )}
         >
           <Link
@@ -64,7 +53,7 @@ export function SidebarPlaylistItem({ playlist }: SidebarPlaylistItemProps) {
               }
             }}
           >
-            {isCurrentlyPlaying ? (
+            {isPlaylistPlaying ? (
               <EqualizerBars className="text-primary mb-1" />
             ) : (
               <ListMusic />

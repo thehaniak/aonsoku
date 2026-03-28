@@ -8,7 +8,12 @@ import { shallow } from 'zustand/shallow'
 import { createWithEqualityFn } from 'zustand/traditional'
 import { scrobble } from '@/service/scrobble'
 import { subsonic } from '@/service/subsonic'
-import { IPlayerContext, ISongList, LoopState } from '@/types/playerContext'
+import {
+  IPlayerContext,
+  ISongList,
+  LoopState,
+  PlaybackSourceType,
+} from '@/types/playerContext'
 import { ISong } from '@/types/responses/song'
 import { areSongListsEqual } from '@/utils/compareSongLists'
 import { isDesktop } from '@/utils/desktop'
@@ -1310,54 +1315,43 @@ export const usePlayerFullscreen = () =>
 export const usePlayerContext = () =>
   usePlayerStore((state) => state.playerState.playbackContext)
 
-export const useIsPlaylistPlaying = (playlistId: string) => {
+const useContextVerification = (id: string, type: PlaybackSourceType) => {
   const { source } = usePlayerStore(
     (state) => state.playerState.playbackContext,
   )
-  const isPlaying = usePlayerStore((state) => state.playerState.isPlaying)
+  const isPlayerPlaying = usePlayerStore((state) => state.playerState.isPlaying)
 
-  if (!source) return { isPlaylistActive: false, isPlaylistPlaying: false }
+  if (!source) return { isActive: false, isPlaying: false }
 
-  const isPlaylistActive =
-    source.type === 'playlist' && source.id === playlistId
-  const isPlaylistPlaying = isPlaylistActive && isPlaying
+  const isActive = source.type === type && source.id === id
+  const isPlaying = isActive && isPlayerPlaying
+
+  return { isActive, isPlaying }
+}
+
+export const useIsPlaylistPlaying = (playlistId: string) => {
+  const { isActive, isPlaying } = useContextVerification(playlistId, 'playlist')
 
   return {
-    isPlaylistActive,
-    isPlaylistPlaying,
+    isPlaylistActive: isActive,
+    isPlaylistPlaying: isPlaying,
   }
 }
 
 export const useIsAlbumPlaying = (albumId: string) => {
-  const { source } = usePlayerStore(
-    (state) => state.playerState.playbackContext,
-  )
-  const isPlaying = usePlayerStore((state) => state.playerState.isPlaying)
-
-  if (!source) return { isAlbumActive: false, isAlbumPlaying: false }
-
-  const isAlbumActive = source.type === 'album' && source.id === albumId
-  const isAlbumPlaying = isAlbumActive && isPlaying
+  const { isActive, isPlaying } = useContextVerification(albumId, 'album')
 
   return {
-    isAlbumActive,
-    isAlbumPlaying,
+    isAlbumActive: isActive,
+    isAlbumPlaying: isPlaying,
   }
 }
 
-export const isArtistPlaying = (artistId: string) => {
-  const { source } = usePlayerStore(
-    (state) => state.playerState.playbackContext,
-  )
-  const isPlaying = usePlayerStore((state) => state.playerState.isPlaying)
-
-  if (!source) return { isArtistActive: false, isArtistPlaying: false }
-
-  const isArtistActive = source.type === 'artist' && source.id === artistId
-  const isArtistPlaying = isArtistActive && isPlaying
+export const useIsArtistPlaying = (artistId: string) => {
+  const { isActive, isPlaying } = useContextVerification(artistId, 'artist')
 
   return {
-    isArtistActive,
-    isArtistPlaying,
+    isArtistActive: isActive,
+    isArtistPlaying: isPlaying,
   }
 }
