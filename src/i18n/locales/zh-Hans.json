@@ -136,7 +136,10 @@
     "headline": "专辑",
     "buttons": {
       "like": "喜欢 {{name}}",
-      "dislike": "取消对 {{name}} 的喜欢"
+      "dislike": "取消对 {{name}} 的喜欢",
+      "play": "播放 {{name}}",
+      "pause": "暂停 {{name}}",
+      "shuffle": "随机播放 {{name}}"
     },
     "info": {
       "lastfm": "在 Last.fm 中打开",

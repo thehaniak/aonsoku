@@ -8,6 +8,7 @@ import {
   usePlayerContext,
   usePlayerStore,
 } from '@/store/player.store'
+import { PlaybackSource } from '@/types/playerContext'
 import { SingleAlbum } from '@/types/responses/album'
 import { queryKeys } from '@/utils/queryKeys'
 import { AlbumOptions } from './options'
@@ -48,9 +49,17 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
     })
   }
 
+  const isCurrentAlbumActive =
+    (source && source.type === 'album' && source.id === album.id) ?? false
+  const isAlbumPlaying = isPlaying && isCurrentAlbumActive
+
   const buttonsTooltips = {
-    play: t('playlist.buttons.play', { name: album.name }),
-    shuffle: t('playlist.buttons.shuffle', { name: album.name }),
+    play: () => {
+      return isAlbumPlaying
+        ? t('album.buttons.pause', { name: album.name })
+        : t('album.buttons.play', { name: album.name })
+    },
+    shuffle: t('album.buttons.shuffle', { name: album.name }),
     options: t('playlist.buttons.options', { name: album.name }),
     like: () => {
       return isAlbumStarred
@@ -62,48 +71,43 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
     },
   }
 
-  const isCurrentAlbumActive =
-    source?.type === 'album' && source.id === album.id
-  const isAlbumPlaying = isPlaying && isCurrentAlbumActive
+  function handlePlayButton() {
+    if (isCurrentAlbumActive) {
+      togglePlayPause()
+    } else {
+      setSongList(album.song, 0, false, {
+        id: album.id,
+        name: album.name,
+        type: 'album',
+      })
+    }
+  }
+
+  function handleShuffleButton() {
+    const playbackSource: PlaybackSource = {
+      id: album.id,
+      name: album.name,
+      type: 'album',
+    }
+
+    setSongList(album.song, 0, true, playbackSource)
+  }
 
   return (
     <Actions.Container>
-      {!isAlbumPlaying && (
-        <Actions.Button
-          tooltip={buttonsTooltips.play}
-          buttonStyle="primary"
-          onClick={() =>
-            setSongList(album.song, 0, false, {
-              id: album.id,
-              name: album.name,
-              type: 'album',
-            })
-          }
-        >
-          <Actions.PlayIcon />
-        </Actions.Button>
-      )}
-      {isAlbumPlaying && (
-        <Actions.Button
-          tooltip={buttonsTooltips.play}
-          buttonStyle="primary"
-          onClick={togglePlayPause}
-        >
-          <Actions.PauseIcon />
-        </Actions.Button>
-      )}
+      <Actions.Button
+        tooltip={buttonsTooltips.play()}
+        buttonStyle="primary"
+        onClick={handlePlayButton}
+      >
+        {isAlbumPlaying ? <Actions.PauseIcon /> : <Actions.PlayIcon />}
+      </Actions.Button>
 
       {album.song.length > 1 && (
         <Actions.Button
           tooltip={buttonsTooltips.shuffle}
-          onClick={() =>
-            setSongList(album.song, 0, true, {
-              id: album.id,
-              name: album.name,
-              type: 'album',
-            })
-          }
-          isActive={isAlbumPlaying && isShuffleActive}
+          onClick={handleShuffleButton}
+          isActive={isCurrentAlbumActive && isShuffleActive}
         >
           <Actions.ShuffleIcon />
         </Actions.Button>

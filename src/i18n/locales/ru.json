@@ -142,7 +142,10 @@
     "headline": "Альбом",
     "buttons": {
       "like": "Лайкнуть {{name}}",
-      "dislike": "Убрать лайк с {{name}}"
+      "dislike": "Убрать лайк с {{name}}",
+      "play": "Воспроизвести {{name}}",
+      "pause": "Пауза {{name}}",
+      "shuffle": "Воспроизвести {{name}} в случайном порядке"
     },
     "info": {
       "about": "О {{name}}",

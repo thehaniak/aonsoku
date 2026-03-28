@@ -236,7 +236,10 @@
     "headline": "Album",
     "buttons": {
       "like": "Ajouter {{name}} aux favoris",
-      "dislike": "Enlever {{name}} des favoris"
+      "dislike": "Enlever {{name}} des favoris",
+      "play": "Lire {{name}}",
+      "pause": "Mettre {{name}} en pause",
+      "shuffle": "Lire {{name}} en mode aléatoire"
     },
     "table": {
       "discNumber": "Disque {{number}}"

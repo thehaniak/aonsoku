@@ -107,7 +107,10 @@
     "headline": "Album",
     "buttons": {
       "like": "{{name}} gefällt mir",
-      "dislike": "Gefällt mir von {{name}} entfernen"
+      "dislike": "Gefällt mir von {{name}} entfernen",
+      "play": "{{name}} wiedergeben",
+      "pause": "{{name}} pausieren",
+      "shuffle": "{{name}} zufällig wiedergeben"
     },
     "info": {
       "about": "Über {{name}}",

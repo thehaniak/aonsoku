@@ -124,7 +124,10 @@
     },
     "buttons": {
       "like": "Metti nei preferiti {{name}}",
-      "dislike": "Rimuovi {{name}} dai preferiti"
+      "dislike": "Rimuovi {{name}} dai preferiti",
+      "play": "Riproduci {{name}}",
+      "pause": "Pausa {{name}}",
+      "shuffle": "Riproduci {{name}} in modalità casuale"
     },
     "more": {
       "listTitle": "Altro da questo artista",
