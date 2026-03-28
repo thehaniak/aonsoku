@@ -108,15 +108,19 @@ function InfoWrapper({ children }: InfoWrapperProps) {
 
 interface TitleProps {
   link: string
+  className?: string
   children: string
 }
 
-function Title({ link, children }: TitleProps) {
+function Title({ link, children, className }: TitleProps) {
   return (
-    <div className="w-full truncate" data-testid="card-title">
+    <div className="w-full truncate mt-0.5" data-testid="card-title">
       <Link
         to={link}
-        className="max-w-full truncate hover:underline leading-7 text-sm font-semibold"
+        className={cn(
+          'max-w-full truncate hover:underline leading-7 text-sm font-semibold',
+          className,
+        )}
         data-testid="card-title-link"
       >
         {children}
@@ -143,7 +147,7 @@ function Subtitle({
       <div className="w-full">
         <p
           className={cn(
-            'leading-5 truncate text-xs text-muted-foreground -mt-1',
+            'leading-5 truncate text-xs text-muted-foreground -mt-0.5',
             className,
           )}
           data-testid="card-subtitle"
@@ -155,7 +159,7 @@ function Subtitle({
   }
 
   return (
-    <div className="flex w-full truncate -mt-1" data-testid="card-subtitle">
+    <div className="flex w-full truncate -mt-0.5" data-testid="card-subtitle">
       <Link
         to={link}
         data-testid="card-subtitle-link"

@@ -49,19 +49,14 @@ function AlbumCard({ album }: AlbumCardProps) {
         )}
       </PreviewCard.ImageWrapper>
       <PreviewCard.InfoWrapper>
-        <div
-          className={clsx(
-            'flex items-center gap-1',
-            isAlbumPlaying && 'text-primary',
-          )}
-        >
+        <div className="flex items-center gap-1">
           {isAlbumPlaying && (
-            <EqualizerBars
-              size={14}
-              className={clsx('mb-0.5', isAlbumPlaying && 'text-primary')}
-            />
+            <EqualizerBars size={14} className="mb-0.5 text-primary" />
           )}
-          <PreviewCard.Title link={ROUTES.ALBUM.PAGE(album.id)}>
+          <PreviewCard.Title
+            link={ROUTES.ALBUM.PAGE(album.id)}
+            className={clsx(isAlbumPlaying && 'text-primary')}
+          >
             {album.name}
           </PreviewCard.Title>
         </div>
