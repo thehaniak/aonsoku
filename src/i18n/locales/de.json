@@ -93,6 +93,7 @@
     "refresh": "Wiedergabelisten aktualisieren",
     "buttons": {
       "play": "{{name}} abspielen",
+      "pause": "{{name}} pausieren",
       "shuffle": "{{name}} im Zufallsmodus abspielen",
       "options": "Weitere Optionen für {{name}}"
     },
@@ -107,7 +108,10 @@
     "headline": "Album",
     "buttons": {
       "like": "{{name}} gefällt mir",
-      "dislike": "Gefällt mir von {{name}} entfernen"
+      "dislike": "Gefällt mir von {{name}} entfernen",
+      "play": "{{name}} wiedergeben",
+      "pause": "{{name}} pausieren",
+      "shuffle": "{{name}} zufällig wiedergeben"
     },
     "info": {
       "about": "Über {{name}}",

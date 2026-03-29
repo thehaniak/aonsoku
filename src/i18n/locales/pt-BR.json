@@ -74,6 +74,7 @@
     "refresh": "Atualizar playlists",
     "buttons": {
       "play": "Tocar {{name}}",
+      "pause": "Pausar {{name}}",
       "shuffle": "Tocar {{name}} no modo aleatório",
       "options": "Mais opções para {{name}}"
     },
@@ -143,6 +144,9 @@
   "album": {
     "headline": "Álbum",
     "buttons": {
+      "play": "Tocar {{name}}",
+      "pause": "Pausar {{name}}",
+      "shuffle": "Tocar {{name}} no modo aleatório",
       "like": "Curtir {{name}}",
       "dislike": "Remover curtida de {{name}}"
     },

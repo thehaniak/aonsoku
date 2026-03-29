@@ -1,6 +1,4 @@
 import clsx from 'clsx'
-import { memo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { EqualizerBars } from '@/app/components/icons/equalizer-bars'
 import { ImageLoader } from '@/app/components/image-loader'
 import { PreviewCard } from '@/app/components/preview-card/card'
@@ -9,17 +7,16 @@ import { ROUTES } from '@/routes/routesList'
 import { useIsArtistPlaying, usePlayerActions } from '@/store/player.store'
 import { ISimilarArtist } from '@/types/responses/artist'
 
-type ArtistCardProps = {
+interface RelatedArtistCardProps {
   artist: ISimilarArtist
 }
 
-function ArtistCard({ artist }: ArtistCardProps) {
-  const { t } = useTranslation()
+export function RelatedArtistCard({ artist }: RelatedArtistCardProps) {
   const { getArtistAllSongs } = useSongList()
   const { setSongList, togglePlayPause } = usePlayerActions()
   const { isArtistActive, isArtistPlaying } = useIsArtistPlaying(artist.id)
 
-  async function playArtistRadio() {
+  async function playArtistRadio(artist: ISimilarArtist) {
     const songList = await getArtistAllSongs(artist.name)
 
     if (!songList) return
@@ -35,18 +32,18 @@ function ArtistCard({ artist }: ArtistCardProps) {
     if (isArtistActive) {
       togglePlayPause()
     } else {
-      playArtistRadio()
+      playArtistRadio(artist)
     }
   }
 
   return (
-    <PreviewCard.Root className="flex flex-col w-full h-full">
+    <PreviewCard.Root>
       <PreviewCard.ImageWrapper link={ROUTES.ARTIST.PAGE(artist.id)}>
-        <ImageLoader id={artist.coverArt} type="artist" size={300}>
+        <ImageLoader id={artist.coverArt} type="artist">
           {(src) => <PreviewCard.Image src={src} alt={artist.name} />}
         </ImageLoader>
         {isArtistPlaying ? (
-          <PreviewCard.PauseButton onClick={handlePlayButton} />
+          <PreviewCard.PauseButton onClick={togglePlayPause} />
         ) : (
           <PreviewCard.PlayButton onClick={handlePlayButton} />
         )}
@@ -54,23 +51,16 @@ function ArtistCard({ artist }: ArtistCardProps) {
       <PreviewCard.InfoWrapper>
         <div className="flex items-center gap-1">
           {isArtistPlaying && (
-            <EqualizerBars size={14} className="mb-0.5 text-primary" />
+            <EqualizerBars size={14} className="text-primary" />
           )}
-          <PreviewCard.Title
+          <PreviewCard.Subtitle
             link={ROUTES.ARTIST.PAGE(artist.id)}
-            className={clsx(isArtistPlaying && 'text-primary')}
+            className={clsx('mt-2', isArtistPlaying && 'text-primary')}
           >
             {artist.name}
-          </PreviewCard.Title>
+          </PreviewCard.Subtitle>
         </div>
-        <PreviewCard.Subtitle enableLink={false}>
-          {t('artist.info.albumsCount', {
-            count: artist.albumCount,
-          })}
-        </PreviewCard.Subtitle>
       </PreviewCard.InfoWrapper>
     </PreviewCard.Root>
   )
 }
-
-export const ArtistGridCard = memo(ArtistCard)

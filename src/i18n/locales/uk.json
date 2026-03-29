@@ -24,7 +24,8 @@
     "headline": "Список відтворення",
     "refresh": "Оновити список відтворення",
     "buttons": {
-      "play": "Відтворити {{name}}"
+      "play": "Відтворити {{name}}",
+      "pause": "Пауза {{name}}"
     },
     "duration": "приблизно {{duration}}",
     "songCount_one": "{{count}} пісня",

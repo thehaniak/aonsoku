@@ -126,6 +126,10 @@ img {
   @apply bg-background text-muted-foreground px-1.5 py-0.5 rounded border text-sm font-mono;
 }
 
+.action-button-active {
+  @apply after:content-['•'] after:block after:absolute after:bottom-0 after:text-primary;
+}
+
 .player-button-active {
   @apply after:content-['•'] after:block after:absolute after:-bottom-1 after:text-primary;
 }

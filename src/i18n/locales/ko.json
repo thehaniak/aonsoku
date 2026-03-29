@@ -41,6 +41,7 @@
   "playlist": {
     "buttons": {
       "play": "{{name}} 재생",
+      "pause": "{{name}} 일시 정지",
       "shuffle": "무작위 모드로 {{name}} 재생",
       "options": "{{name}} 옵션 더 보기"
     },
@@ -471,7 +472,10 @@
     "headline": "앨범",
     "buttons": {
       "like": "{{name}} 좋아요",
-      "dislike": "{{name}} 좋아요 취소"
+      "dislike": "{{name}} 좋아요 취소",
+      "play": "{{name}} 재생",
+      "pause": "{{name}} 일시 정지",
+      "shuffle": "{{name}} 셔플 재생"
     },
     "more": {
       "listTitle": "이 아티스트의 다른 곡",

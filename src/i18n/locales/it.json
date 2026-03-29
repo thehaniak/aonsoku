@@ -80,7 +80,8 @@
     "buttons": {
       "shuffle": "Riproduzione casuale di {{name}}",
       "options": "Più opzioni per {{name}}",
-      "play": "Riproduci {{name}}"
+      "play": "Riproduci {{name}}",
+      "pause": "Pausa {{name}}"
     },
     "noSongList": "Questa playlist non contiene brani!"
   },
@@ -124,7 +125,10 @@
     },
     "buttons": {
       "like": "Metti nei preferiti {{name}}",
-      "dislike": "Rimuovi {{name}} dai preferiti"
+      "dislike": "Rimuovi {{name}} dai preferiti",
+      "play": "Riproduci {{name}}",
+      "pause": "Pausa {{name}}",
+      "shuffle": "Riproduci {{name}} in modalità casuale"
     },
     "more": {
       "listTitle": "Altro da questo artista",

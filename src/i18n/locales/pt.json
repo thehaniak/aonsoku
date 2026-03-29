@@ -394,6 +394,7 @@
     "refresh": "Atualizar playlists",
     "buttons": {
       "play": "Tocar {{name}}",
+      "pause": "Pausar {{name}}",
       "shuffle": "Tocar {{name}} no modo aleatório",
       "options": "Mais opções para {{name}}"
     },
@@ -464,7 +465,10 @@
     "headline": "Álbum",
     "buttons": {
       "like": "Curtir {{name}}",
-      "dislike": "Remover curtida de {{name}}"
+      "dislike": "Remover curtida de {{name}}",
+      "play": "Reproduzir {{name}}",
+      "pause": "Pausar {{name}}",
+      "shuffle": "Reproduzir {{name}} em modo aleatório"
     },
     "info": {
       "about": "Sobre {{name}}",

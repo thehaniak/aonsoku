@@ -77,7 +77,10 @@
     "headline": "Album",
     "buttons": {
       "like": "Polub {{name}}",
-      "dislike": "Usuń {{name}} z ulubionych"
+      "dislike": "Usuń {{name}} z ulubionych",
+      "play": "Odtwórz {{name}}",
+      "pause": "Wstrzymaj {{name}}",
+      "shuffle": "Odtwórz {{name}} w trybie losowym"
     },
     "table": {
       "discNumber": "Płyta {{number}}"
@@ -219,6 +222,7 @@
     "refresh": "Odśwież playlisty",
     "buttons": {
       "play": "Odtwórz {{name}}",
+      "pause": "Wstrzymaj {{name}}",
       "shuffle": "Odtwórz {{name}} w trybie losowym",
       "options": "Więcej opcji dla {{name}}"
     },

@@ -73,6 +73,7 @@
     "refresh": "Obnovit playlisty",
     "buttons": {
       "play": "Přehrát {{name}}",
+      "pause": "Pozastavit {{name}}",
       "shuffle": "Přehrát {{name}} v náhodném pořadí",
       "options": "Více možností pro {{name}}"
     },
@@ -387,7 +388,10 @@
     "headline": "Album",
     "buttons": {
       "like": "Olajkovat {{name}}",
-      "dislike": "Odebrat lajk z {{name}}"
+      "dislike": "Odebrat lajk z {{name}}",
+      "play": "Přehrát {{name}}",
+      "pause": "Pozastavit {{name}}",
+      "shuffle": "Přehrát {{name}} v náhodném pořadí"
     },
     "info": {
       "about": "O {{name}}",

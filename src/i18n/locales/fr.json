@@ -3,6 +3,7 @@
     "duration": "environ {{duration}}",
     "buttons": {
       "play": "Lire {{name}}",
+      "pause": "Mettre {{name}} en pause",
       "options": "Plus d'options pour {{name}}",
       "shuffle": "Lire {{name}} en mode aléatoire"
     },
@@ -236,7 +237,10 @@
     "headline": "Album",
     "buttons": {
       "like": "Ajouter {{name}} aux favoris",
-      "dislike": "Enlever {{name}} des favoris"
+      "dislike": "Enlever {{name}} des favoris",
+      "play": "Lire {{name}}",
+      "pause": "Mettre {{name}} en pause",
+      "shuffle": "Lire {{name}} en mode aléatoire"
     },
     "table": {
       "discNumber": "Disque {{number}}"

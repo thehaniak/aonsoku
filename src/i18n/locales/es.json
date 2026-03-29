@@ -75,6 +75,7 @@
     "refresh": "Actualizar listas de reproducción",
     "buttons": {
       "play": "Reproducir {{name}}",
+      "pause": "Pausar {{name}}",
       "shuffle": "Reproducir {{name}} en modo aleatorio",
       "options": "Más opciones para {{name}}"
     },
@@ -146,7 +147,10 @@
     "headline": "Álbum",
     "buttons": {
       "like": "Me gusta {{name}}",
-      "dislike": "Eliminar me gusta de {{name}}"
+      "dislike": "Eliminar me gusta de {{name}}",
+      "play": "Reproducir {{name}}",
+      "pause": "Pausar {{name}}",
+      "shuffle": "Reproducir {{name}} en modo aleatorio"
     },
     "info": {
       "about": "Sobre {{name}}",

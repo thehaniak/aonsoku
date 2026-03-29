@@ -63,7 +63,10 @@
     "headline": "Album",
     "buttons": {
       "like": "Ajouter {{name}} aux favoris",
-      "dislike": "Enlever {{name}} des favoris"
+      "dislike": "Enlever {{name}} des favoris",
+      "play": "Faire jouer {{name}}",
+      "pause": "Mettre {{name}} en pause",
+      "shuffle": "Faire jouer {{name}} en mode aléatoire"
     }
   },
   "favorites": {
@@ -530,6 +533,7 @@
     "headline": "Liste de lecture",
     "buttons": {
       "play": "Lire {{name}}",
+      "pause": "Mettre {{name}} en pause",
       "shuffle": "Lire {{name}} en mode aléatoire",
       "options": "Plus d'options pour {{name}}"
     },
