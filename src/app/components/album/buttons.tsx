@@ -4,8 +4,8 @@ import { Actions } from '@/app/components/actions'
 import { subsonic } from '@/service/subsonic'
 import { useAppPages } from '@/store/app.store'
 import {
+  useIsAlbumPlaying,
   usePlayerActions,
-  usePlayerContext,
   usePlayerStore,
 } from '@/store/player.store'
 import { PlaybackSource } from '@/types/playerContext'
@@ -22,8 +22,7 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
   const { t } = useTranslation()
   const { setSongList, togglePlayPause, toggleShuffle } = usePlayerActions()
   const { showInfoPanel, toggleShowInfoPanel } = useAppPages()
-  const { source } = usePlayerContext()
-  const isPlaying = usePlayerStore((state) => state.playerState.isPlaying)
+  const { isAlbumActive, isAlbumPlaying } = useIsAlbumPlaying(album.id)
   const isShuffleActive = usePlayerStore(
     (state) => state.playerState.isShuffleActive,
   )
@@ -48,10 +47,6 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
       starred: isAlbumStarred,
     })
   }
-
-  const isCurrentAlbumActive =
-    (source && source.type === 'album' && source.id === album.id) ?? false
-  const isAlbumPlaying = isPlaying && isCurrentAlbumActive
 
   const buttonsTooltips = {
     play: () => {
@@ -78,7 +73,7 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
   }
 
   function handlePlayButton() {
-    if (isCurrentAlbumActive) {
+    if (isAlbumActive) {
       togglePlayPause()
     } else {
       setSongList(album.song, 0, false, playbackSource)
@@ -86,7 +81,7 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
   }
 
   function handleShuffleButton() {
-    if (isCurrentAlbumActive) {
+    if (isAlbumActive) {
       toggleShuffle()
     } else {
       setSongList(album.song, 0, true, playbackSource)
@@ -107,7 +102,7 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
         <Actions.Button
           tooltip={buttonsTooltips.shuffle}
           onClick={handleShuffleButton}
-          isActive={isCurrentAlbumActive && isShuffleActive}
+          isActive={isAlbumActive && isShuffleActive}
         >
           <Actions.ShuffleIcon />
         </Actions.Button>
